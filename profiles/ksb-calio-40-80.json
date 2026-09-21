@@ -2,20 +2,16 @@
   "id": "ksb-calio-40-80",
   "name": "KSB Calio 40-80",
   "vendor": "KSB",
-  "version": "1.0.0",
-  "description": "KSB Calio 40-80 smart circulator pump (Modbus-RTU).",
+  "version": "1.1.0",
+  "description": "KSB Calio 40-80 smart circulator pump (Modbus-RTU). Register map verified against the datasheet (Table 22); 8 data bits, EVEN parity, 1 stop bit, factory address 17.",
   "reads": [
     {
-      "key": "b0",
+      "key": "monitor",
       "fc": 3,
       "address": 2000,
-      "quantity": 103,
+      "quantity": 15,
       "decode": [
-        {
-          "field": "errorVector",
-          "offset": 0,
-          "type": "hex"
-        },
+        { "field": "errorVector", "offset": 0, "type": "hex" },
         {
           "field": "errors",
           "offset": 0,
@@ -29,92 +25,45 @@
             "E06 Supply voltage too high/low"
           ]
         },
-        {
-          "field": "headM",
-          "offset": 2,
-          "type": "int16",
-          "label": "Head",
-          "unit": "m",
-          "scale": 0.1,
-          "decimals": 1
-        },
-        {
-          "field": "flowM3h",
-          "offset": 4,
-          "type": "int16",
-          "label": "Flow",
-          "unit": "m3/h",
-          "scale": 0.1,
-          "decimals": 1
-        },
-        {
-          "field": "speedRpm",
-          "offset": 8,
-          "type": "uint16",
-          "label": "Speed",
-          "unit": "rpm"
-        },
-        {
-          "field": "running",
-          "offset": 9,
-          "type": "bool"
-        },
-        {
-          "field": "operatingHours",
-          "offset": 10,
-          "type": "uint16",
-          "label": "Operating hours",
-          "unit": "h"
-        },
-        {
-          "field": "powerW",
-          "offset": 12,
-          "type": "int16",
-          "label": "Power",
-          "unit": "W"
-        },
-        {
-          "field": "loadPct",
-          "offset": 14,
-          "type": "uint16",
-          "label": "Load",
-          "unit": "%"
-        },
+        { "field": "headM", "offset": 2, "type": "int16", "label": "Head", "unit": "m", "scale": 0.1, "decimals": 1 },
+        { "field": "flowM3h", "offset": 4, "type": "int16", "label": "Flow", "unit": "m3/h", "scale": 0.1, "decimals": 1 },
+        { "field": "speedRpm", "offset": 8, "type": "uint16", "label": "Speed", "unit": "rpm" },
+        { "field": "running", "offset": 9, "type": "bool", "label": "Running" },
+        { "field": "operatingHours", "offset": 10, "type": "int16", "label": "Operating hours", "unit": "h" },
+        { "field": "powerW", "offset": 12, "type": "int16", "label": "Power", "unit": "W" },
+        { "field": "loadPct", "offset": 14, "type": "uint16", "label": "Load", "unit": "%" }
+      ]
+    },
+    {
+      "key": "control",
+      "fc": 3,
+      "address": 2100,
+      "quantity": 3,
+      "decode": [
         {
           "field": "mode",
-          "offset": 100,
+          "offset": 0,
           "type": "enum",
           "label": "Operating mode",
           "enum": {
-            "1": "Constant pressure",
-            "4": "Proportional pressure",
+            "1": "Constant-pressure control",
+            "4": "Proportional-pressure control",
             "8": "Eco mode",
-            "16": "Fixed speed"
+            "16": "Fixed-speed operation"
           }
         },
-        {
-          "field": "setpointPct",
-          "offset": 101,
-          "type": "uint16",
-          "label": "Setpoint",
-          "unit": "%",
-          "scale": 0.010001,
-          "decimals": 1
-        },
+        { "field": "setpointPct", "offset": 1, "type": "uint16", "label": "Setpoint", "unit": "%", "scale": 0.010001, "decimals": 1 },
         {
           "field": "startStop",
-          "offset": 102,
+          "offset": 2,
           "type": "enum",
           "label": "Start/stop",
-          "enum": {
-            "5": "stopped",
-            "160": "running"
-          }
+          "enum": { "5": "stopped", "160": "running" }
         }
       ]
     },
     {
-      "key": "b1",
+      "key": "comms",
       "fc": 3,
       "address": 3000,
       "quantity": 2,
@@ -124,16 +73,9 @@
           "offset": 0,
           "type": "enum",
           "label": "Baud rate",
-          "enum": {
-            "4": "19200"
-          }
+          "enum": { "0": "9600", "3": "9600", "4": "19200" }
         },
-        {
-          "field": "modbusAddress",
-          "offset": 1,
-          "type": "uint16",
-          "label": "Modbus address"
-        }
+        { "field": "modbusAddress", "offset": 1, "type": "uint16", "label": "Modbus address" }
       ]
     }
   ],
@@ -142,22 +84,19 @@
       "fc": 16,
       "address": 2100,
       "field": "mode",
-      "label": "Operating mode"
+      "label": "Operating mode",
+      "allowed": [1, 4, 8, 16]
     },
     "setpoint": {
       "fc": 16,
       "address": 2101,
       "field": "setpointPct",
-      "label": "Setpoint",
+      "label": "Setpoint %",
       "scale": 99.99,
       "min": 0,
       "max": 100
     },
-    "startStop": {
-      "fc": 16,
-      "address": 2102,
-      "field": "startStop",
-      "label": "Start/stop"
-    }
+    "start": { "fc": 16, "address": 2102, "value": 160, "label": "Start" },
+    "stop": { "fc": 16, "address": 2102, "value": 5, "label": "Stop" }
   }
 }
