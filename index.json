@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-18",
+  "updated": "2026-09-21",
   "profiles": [
     {
       "id": "entes-energy-meter",
@@ -10,25 +10,11 @@
       "file": "profiles/entes-energy-meter.json"
     },
     {
-      "id": "calio-v2",
-      "name": "KSB Calio pump (protocol v2)",
+      "id": "ksb-calio-40-80",
+      "name": "KSB Calio 40-80",
       "vendor": "KSB",
-      "description": "KSB Calio smart circulator pump, register map v2.",
-      "file": "profiles/calio-v2.json"
-    },
-    {
-      "id": "calio-v3",
-      "name": "KSB Calio pump (protocol v3)",
-      "vendor": "KSB",
-      "description": "KSB Calio smart circulator pump, register map v3.",
-      "file": "profiles/calio-v3.json"
-    },
-    {
-      "id": "calio-v4",
-      "name": "KSB Calio pump (protocol v4)",
-      "vendor": "KSB",
-      "description": "KSB Calio smart circulator pump, register map v4.",
-      "file": "profiles/calio-v4.json"
+      "description": "KSB Calio 40-80 smart circulator pump (Modbus-RTU).",
+      "file": "profiles/ksb-calio-40-80.json"
     },
     {
       "id": "XY-MD02",

@@ -1,9 +1,9 @@
 {
-  "id": "calio-v2",
-  "name": "KSB Calio pump (protocol v2)",
+  "id": "ksb-calio-40-80",
+  "name": "KSB Calio 40-80",
   "vendor": "KSB",
   "version": "1.0.0",
-  "description": "KSB Calio smart circulator pump, register map v2.",
+  "description": "KSB Calio 40-80 smart circulator pump (Modbus-RTU).",
   "reads": [
     {
       "key": "b0",
@@ -20,7 +20,6 @@
           "field": "errors",
           "offset": 0,
           "type": "bits",
-          "label": "erry",
           "labels": [
             "E01 Temperature limit exceeded",
             "E02 Overcurrent",
@@ -123,8 +122,11 @@
         {
           "field": "baudRate",
           "offset": 0,
-          "type": "uint16",
-          "label": "Baud rate"
+          "type": "enum",
+          "label": "Baud rate",
+          "enum": {
+            "4": "19200"
+          }
         },
         {
           "field": "modbusAddress",
@@ -139,7 +141,8 @@
     "mode": {
       "fc": 16,
       "address": 2100,
-      "field": "mode"
+      "field": "mode",
+      "label": "Operating mode"
     },
     "setpoint": {
       "fc": 16,
@@ -150,10 +153,11 @@
       "min": 0,
       "max": 100
     },
-    "start": {
+    "startStop": {
       "fc": 16,
       "address": 2102,
-      "label": "Start"
+      "field": "startStop",
+      "label": "Start/stop"
     }
   }
 }
