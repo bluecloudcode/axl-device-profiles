@@ -1,0 +1,10 @@
+{
+  "name": "axl-device-profiles",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Community catalog of Modbus-RTU device profiles for the node-red-contrib-axl-bk-eth axl-device node.",
+  "scripts": {
+    "test": "node validate.js"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "XY-MD02",
+  "name": "XY-MD02 temperature / humidity",
+  "vendor": "generic",
+  "version": "1.0.0",
+  "description": "SHT20-based temperature + humidity sensor (Modbus-RTU).",
+  "reads": [
+    {
+      "key": "b0",
+      "fc": 4,
+      "address": 1,
+      "quantity": 2,
+      "decode": [
+        {
+          "field": "tempc",
+          "offset": 0,
+          "type": "int16",
+          "label": "Temp",
+          "unit": "C",
+          "scale": 0.1,
+          "decimals": 2
+        },
+        {
+          "field": "hump",
+          "offset": 1,
+          "type": "uint16",
+          "label": "Hum",
+          "unit": "%",
+          "scale": 0.1,
+          "decimals": 2
+        }
+      ]
+    }
+  ]
+}

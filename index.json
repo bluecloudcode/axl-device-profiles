@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "updated": "2026-09-18",
+  "profiles": [
+    {
+      "id": "entes-energy-meter",
+      "name": "Entes energy meter",
+      "vendor": "Entes",
+      "description": "Three-phase energy/power meter (Modbus-RTU).",
+      "file": "profiles/entes-energy-meter.json"
+    },
+    {
+      "id": "calio-v2",
+      "name": "KSB Calio pump (protocol v2)",
+      "vendor": "KSB",
+      "description": "KSB Calio smart circulator pump, register map v2.",
+      "file": "profiles/calio-v2.json"
+    },
+    {
+      "id": "calio-v3",
+      "name": "KSB Calio pump (protocol v3)",
+      "vendor": "KSB",
+      "description": "KSB Calio smart circulator pump, register map v3.",
+      "file": "profiles/calio-v3.json"
+    },
+    {
+      "id": "calio-v4",
+      "name": "KSB Calio pump (protocol v4)",
+      "vendor": "KSB",
+      "description": "KSB Calio smart circulator pump, register map v4.",
+      "file": "profiles/calio-v4.json"
+    },
+    {
+      "id": "XY-MD02",
+      "name": "XY-MD02 temperature / humidity",
+      "vendor": "generic",
+      "description": "SHT20-based temperature + humidity sensor (Modbus-RTU).",
+      "file": "profiles/XY-MD02.json"
+    }
+  ]
+}

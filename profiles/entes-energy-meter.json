@@ -1,0 +1,89 @@
+{
+  "id": "entes-energy-meter",
+  "name": "Entes energy meter",
+  "vendor": "Entes",
+  "version": "1.0.0",
+  "description": "Three-phase energy/power meter (Modbus-RTU).",
+  "$comment": "Entes ES-32LS kWh meter: FC3 read of 12 registers from address 1 (offsets are 0-based within the block). Register 1 = device address, 2-3 unused, 4/5 = energy UINT32 (Wh), then V/I/Hz/PF/P/Q/S.",
+  "reads": [
+    {
+      "key": "data",
+      "fc": 3,
+      "address": 1,
+      "quantity": 12,
+      "decode": [
+        {
+          "field": "energyKwh",
+          "label": "Energy",
+          "unit": "kWh",
+          "offset": 3,
+          "type": "uint32",
+          "scale": 0.001,
+          "decimals": 3
+        },
+        {
+          "field": "voltage",
+          "label": "Voltage",
+          "unit": "V",
+          "offset": 5,
+          "type": "uint16",
+          "scale": 0.01,
+          "decimals": 2
+        },
+        {
+          "field": "current",
+          "label": "Current",
+          "unit": "A",
+          "offset": 6,
+          "type": "uint16",
+          "scale": 0.001,
+          "decimals": 3
+        },
+        {
+          "field": "frequency",
+          "label": "Frequency",
+          "unit": "Hz",
+          "offset": 7,
+          "type": "uint16",
+          "scale": 0.01,
+          "decimals": 2
+        },
+        {
+          "field": "powerFactor",
+          "label": "Power factor",
+          "offset": 8,
+          "type": "uint16",
+          "scale": 0.001,
+          "decimals": 3
+        },
+        {
+          "field": "activePowerKw",
+          "label": "Active power",
+          "unit": "kW",
+          "offset": 9,
+          "type": "uint16",
+          "scale": 0.01,
+          "decimals": 2
+        },
+        {
+          "field": "reactivePowerKvar",
+          "label": "Reactive power",
+          "unit": "kvar",
+          "offset": 10,
+          "type": "uint16",
+          "scale": 0.01,
+          "decimals": 2
+        },
+        {
+          "field": "apparentPowerKva",
+          "label": "Apparent power",
+          "unit": "kVA",
+          "offset": 11,
+          "type": "uint16",
+          "scale": 0.01,
+          "decimals": 2
+        }
+      ]
+    }
+  ]
+}
