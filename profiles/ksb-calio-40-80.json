@@ -52,7 +52,7 @@
             "16": "Fixed-speed operation"
           }
         },
-        { "field": "setpointPct", "offset": 1, "type": "uint16", "label": "Setpoint", "unit": "%", "scale": 0.010001, "decimals": 1 },
+        { "field": "setpointPct", "offset": 1, "type": "uint16", "label": "Setpoint", "unit": "%", "scale": 0.01, "decimals": 1 },
         {
           "field": "startStop",
           "offset": 2,
